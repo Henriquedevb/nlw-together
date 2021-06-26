@@ -7,32 +7,36 @@
         <title>Rocket.Q - Perguntas e Respostas</title>
 
 
-        <link rel="stylesheet" href="./styles/global.css">
-        <link rel="stylesheet" href="./styles/room.css">
-        <link rel="stylesheet" href="./styles/modal.css">
+        <link rel="stylesheet" href="/styles/global.css">
+        <link rel="stylesheet" href="/styles/room.css">
+        <link rel="stylesheet" href="/styles/modal.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;400;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        
+
+        <!-- Scripts -->
+
+        <script src="/scripts/main.js" defer type="module"></script>
     </head>
 
     <body>
         <div id="room" class="content">
             <header>
-                <a href="#">
-                    <img src="./assets/images/Logo.svg" alt="Rocket.Q Logo">
+                <a href="/home">
+                    <img src="/images/Logo.svg" alt="Rocket.Q Logo">
                 </a>
 
                 <div class="buttons">
-                    <div class="button outlined">
-                        #123456
-                        <img src="./assets/images/icon-cod.svg" alt="Copiar codigo" >
+                    <div class="button outlined" id="room-id" data-id="<%= roomId %>">
+                        #<%= roomId %>
+                        <img src="/images/icon-cod.svg" alt="Copiar codigo" >
                     </div>
 
-                    <a href="#" class="button">
-                        <img src="./assets/images/users1.svg" alt="Criar uma sala">
+                    <a href="/create-pass" class="button">
+                        <img src="/images/users1.svg" alt="Criar uma sala">
                         Criar sala
                     </a>
                 </div>
@@ -42,12 +46,12 @@
                 <section id="question-form">
                     <h2>Faca sua pergunta</h2>
 
-                    <form action="">
+                    <form action="/question/create/<%= roomId  %>" method="POST">
                         <label for="question" class="sr-only">O que voce quer perguntar ?</label>
                         <textarea placeholder="O que voce quer perguntar ?" name="question" id="question"></textarea>
                         <footer>
                             <div>
-                                <img src="./assets/images/lock_black_24dp 1.svg" alt="">
+                                <img src="/images/lock_black_24dp 1.svg" alt="">
                                 Esta e uma pergunta anonima :)
                             </div>
                             <button>Enviar</button>
@@ -61,117 +65,73 @@
                 <section id="questions">
                     <h2 class="sr-only">Perguntas da comunidade</h2>
                    <div class="questions">
+                    
+                        <% if(isNoQuestions){ %>
+                            <%- include('parts/no-question') %> 
+                        <% } %> 
 
-                    <div class="question-wrapper">
-                        <div class="question-content">
-                            <div class="user">
-                                <img src="./assets/images/avatar.svg" alt="avatar de usuario">
-                            </div>
-
-                            <div class="question">
-                                <p>Qual a diferenca entre const, let e var em js ?</p>
-                            </div>
-                        </div>
-
-                        <div class="actions">
-                            <a href="#" class="check">
-                                <img src="./assets/images/check1.svg" alt="Marcar como lida">
-                                Marcar como lida
-                            </a>
-                            <a href="#" class="delete">
-                                <img src="./assets/images/trash 1.svg" alt="Excluir">
-                                Excluir
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="question-wrapper">
-                        <div class="question-content">
-                            <div class="user">
-                                <img src="./assets/images/avatar.svg" alt="avatar de usuario">
-                            </div>
-
-                            <div class="question">
-                                <p>Como ser um dev ?</p>
-                            </div>
-
-                        </div>
+                    <% questions.forEach(question => { %>
+                        <div class="question-wrapper">
+                            <div class="question-content">
+                                <div class="user">
+                                    <img src="/images/avatar.svg" alt="avatar de usuario">
+                                </div>
     
-                        <div class="actions">
-                            <a href="#" class="check">
-                                <img src="./assets/images/check1.svg" alt="Marcar como lida">
-                                Marcar como lida
-                            </a>
-                            <a href="#" class="delete">
-                                <img src="./assets/images/trash 1.svg" alt="Excluir">
-                                Excluir
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="question-wrapper">
-                        <div class="question-content">
-                            <div class="user">
-                                <img src="./assets/images/avatar.svg" alt="avatar de usuario">
+                                <div class="question">
+                                    <p><%= question.title %> </p>
+                                </div>
                             </div>
-
-                            <div class="question">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita exercitationem, repellendus dicta in facilis impedit ipsa eaque debitis nisi doloribus non quos et assumenda aliquid rem. Eius libero maiores quidem. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis tenetur commodi quos nihil! Saepe laudantium ullam minima perspiciatis corporis dolor neque, numquam, mollitia quod voluptatem at quo. In, voluptatibus magnam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam error veritatis delectus repellat perferendis alias obcaecati dignissimos numquam itaque omnis in corporis vitae, voluptas deserunt. Dolor perspiciatis magnam illo ut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, consequatur optio mollitia quidem aut ipsum cumque, ducimus, accusantium et ipsa error! Architecto repudiandae iusto nam sed vel dicta minima facere?</p>
-                            </div>
-
-                        </div>
     
-                        <div class="actions">
-                            <a href="#" class="check">
-                                <img src="./assets/images/check1.svg" alt="Marcar como lida">
-                                Marcar como lida
-                            </a>
-                            <a href="#" class="delete">
-                                <img src="./assets/images/trash 1.svg" alt="Excluir">
-                                Excluir
-                            </a>
+                            <div class="actions">
+                                <a href="#" class="check" data-id="<%= question.id %> ">
+                                    <img src="/images/check1.svg" alt="Marcar como lida">
+                                    Marcar como lida
+                                </a>
+                                <a href="#" class="delete" data-id="<%= question.id %>">
+                                    <img src="/images/trash 1.svg" alt="Excluir">
+                                    Excluir
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    <% }); %> 
                         
-                    <div class="question-wrapper read">
-                        <div class="question-content">
-                            <div class="user">
-                                <img src="./assets/images/avatar.svg" alt="avatar de usuario">
+                    <% questionsRead.forEach(questionRead => { %>
+                        <div class="question-wrapper read">
+                            <div class="question-content">
+                                <div class="user">
+                                    <img src="/images/avatar.svg" alt="avatar de usuario">
+                                </div>
+        
+                                <div class="question">
+                                    <p> <%= questionRead.title %>  </p>
+                                </div>
                             </div>
-    
-                            <div class="question">
-                                <p>O que e typescript ?</p>
+        
+                            <div class="actions">
+                                <a href="#" class="delete" data-id="<%= questionRead.id %>">
+                                    <img src="/images/trash 1.svg" alt="Excluir">
+                                    Excluir
+                                </a>
                             </div>
                         </div>
-    
-                        <div class="actions">
-                            <a href="#" class="check sr-only">
-                                <img src="./assets/images/check1.svg" alt="Marcar como lida">
-                                Marcar como lida
-                            </a>
-                            <a href="#" class="delete">
-                                <img src="./assets/images/trash 1.svg" alt="Excluir">
-                                Excluir
-                            </a>
-                        </div>
-                    </div>
+                    <% }) %> 
                 </div>
             </section>
             </main>
         </div>  
         <!-- Modal -->
 
-        <div class="modal-wrapper active">
+        <div class="modal-wrapper">
             <div class="modal ">
                 <h2>Excluir pergunta</h2>
                 <p>Tem certeza que deseja excluir essa pergunta ?</p>
 
-                <form action="">
+                <form action="#" method="POST">
                     <label class="sr-only" for-id="password">Digite sua senha</label>
                     <input type="password" name="password" placeholder="Digite sua senha">
 
                     <div class="buttons">
-                        <div class="button gray">Cancelar</div>
+                        <div class="button gray cancel">Cancelar</div>
                         <button class="button read">Sim, excluir</button>
                     </div>
                 </form>

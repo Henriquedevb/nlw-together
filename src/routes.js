@@ -1,16 +1,16 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const questionController = require("./controllers/questionController");
+const roomController = require("./controllers/roomController");
 
-router.get('/home', (req, res) => {
-    res.render('index');
-});
+router.get("/home", (req, res) => res.render("index", { page: "create-room" }));
+router.get("/create-pass", (req, res) => res.render("index", { page: "create-pass" }));
 
-router.get('/room', (req, res) => [
-    res.render('room')
-]);
+router.post("/create-room", roomController.create);
+router.get("/room/:room", roomController.open);
+router.post("/enterrom", roomController.enter);
 
-router.get('/create-pass', (req, res) => [
-    res.render('create-pass')
-]);
+router.post("/question/create/:room", questionController.create);
+router.post("/question/:room/:question/:action", questionController.index);
 
 module.exports = router;

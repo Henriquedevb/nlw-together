@@ -1,6 +1,6 @@
 .modal-wrapper.active{
     visibility: visible;
-    opacity: 0;
+    opacity: 1;
 
 }
 
@@ -12,6 +12,8 @@
    left: 0;
    display: flex;
 
+   visibility: hidden;
+   opacity: 0;
    background-color: #0409118a;
 }
 
