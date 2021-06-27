@@ -172,3 +172,8 @@
     margin-top: 1.6rem;
     line-height: 1.9rem;
 }
+
+#botao {
+    background-color: var(--white);
+    border: solid .25rem var(--white);
+}

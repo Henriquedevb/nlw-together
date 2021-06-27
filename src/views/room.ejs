@@ -18,7 +18,6 @@
         
 
         <!-- Scripts -->
-
         <script src="/scripts/main.js" defer type="module"></script>
     </head>
 
@@ -28,12 +27,20 @@
                 <a href="/home">
                     <img src="/images/Logo.svg" alt="Rocket.Q Logo">
                 </a>
-
+                <div>
+                    <input type="checkbox" class="checkbox" id="chk" />
+                    <label class="label" for="chk">
+                    </label>
+                </div>
+                
+                <input type="text" class="sr-only" id="texto" value="<%- roomId %> ">
                 <div class="buttons">
-                    <div class="button outlined" id="room-id" data-id="<%= roomId %>">
-                        #<%= roomId %>
-                        <img src="/images/icon-cod.svg" alt="Copiar codigo" >
-                    </div>
+                    <button id="botao">
+                        <div class="button outlined" id="room-id" data-id="<%= roomId %>">
+                            #<%= roomId %>
+                            <img src="/images/icon-cod.svg" alt="Clique para copiar">
+                        </div>
+                    </button>
 
                     <a href="/create-pass" class="button">
                         <img src="/images/users1.svg" alt="Criar uma sala">
@@ -138,6 +145,6 @@
             </div>
         </div>
 
-
+        <script src="/scripts/darkmode.js"></script>
     </body>
 </html>

@@ -13,11 +13,20 @@ checkButtons.forEach(button => {
     button.addEventListener('click', handleClick);
 });
 
+//DARKMODE 
+
+
+// DARK MODEL
 
 const deleteButton = document.querySelectorAll('.actions a.delete');
 
 deleteButton.forEach(button => {
     button.addEventListener('click', (event) => handleClick(event, false));
+});
+
+document.getElementById("botao").addEventListener("click", function() {
+    document.getElementById("texto").select();
+    document.execCommand('copy');
 });
 
 function handleClick(event, check = true) {

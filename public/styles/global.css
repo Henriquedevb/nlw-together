@@ -7,13 +7,18 @@
 
 }
 
-:root{
-    --black: #0D114F; 
+html{
+    font-size: 62.5%;
+    
+    --background: #F6FAFF;
+    --bg-dark: #333333;
+    
+    --blue: #3485ff; 
+    --black: #0D114F;
+    
     --white: #FFF; 
     --red: #E83F5B; 
     --light-blue: #E0ECFF;
-    --blue: #3485ff; 
-    --background: #F6FAFF;
     --overlay: #040911; 
     --icon-details: #A5B0C1; 
     
@@ -25,14 +30,31 @@
     --roxo: #8960D8;
 
 }
-html{
-    font-size: 62.5%;
-    
-}
+
+
 body{
     display: flex;
     height: 100vh;
     background-color: var(--background);
+}
+
+body.dark {
+	background: #292C35;
+    color: var(--white);
+}
+
+body.dark button{
+    background-color: var(--roxo);
+    color: var(--white);
+}
+
+body.dark h2 {
+    color: var(--blue);
+}
+
+body.dark #botao {
+    background-color: #292c35;
+    border: .25rem solid #292c35;
 }
 
 body, button, input, textarea, a{
@@ -91,6 +113,7 @@ button.outlined,
     background: var(--white);
     color: var(--blue);
     border: .25rem solid var(--blue);
+
 }
 
 button .read,
@@ -114,4 +137,48 @@ button.gray,
 .content header img{
     width: 16.7rem;
     
+}
+
+
+
+input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 52px;
+    height: 27px;
+    background: grey;
+    float: right;
+    border-radius: 100px;
+    position: relative;
+}
+
+label::after{
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--white);
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+input:checked + label {
+    background-color: var(--blue);
+}
+
+input:checked + label::after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+label:active:after {
+    width: 45px;
 }
